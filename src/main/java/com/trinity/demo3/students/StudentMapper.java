@@ -1,7 +1,9 @@
 package com.trinity.demo3.students;
 
-import com.trinity.demo3.school.School;
+import org.springframework.stereotype.Service;
 
+import com.trinity.demo3.school.School;
+@Service
 public class StudentMapper {
 //Los metodos deben ir publicos aquí para que el controlador tenga acceso a ellos. 
 
