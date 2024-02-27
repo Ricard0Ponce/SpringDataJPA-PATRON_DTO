@@ -1,4 +1,4 @@
-package com.trinity.demo3;
+package com.trinity.demo3.students;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 //En esta interface no se agrega ninguna anotacion porque Spring Data JPA sabe que se trata de una 

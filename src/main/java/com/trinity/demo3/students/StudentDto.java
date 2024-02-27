@@ -1,4 +1,4 @@
-package com.trinity.demo3;
+package com.trinity.demo3.students;
 
 // Con Record podemos hacer nuestros DTO de manera más sencilla. 
 // Recordar que un DTO permite filtrar la información y de esta manera que las entidades solo...

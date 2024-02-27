@@ -1,8 +1,9 @@
-package com.trinity.demo3;
+package com.trinity.demo3.school;
 
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.trinity.demo3.students.Student;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

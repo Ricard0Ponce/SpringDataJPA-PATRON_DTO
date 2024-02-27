@@ -1,4 +1,4 @@
-package com.trinity.demo3;
+package com.trinity.demo3.school;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,6 @@
-package com.trinity.demo3;
+package com.trinity.demo3.studentprofile;
+
+import com.trinity.demo3.students.Student;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,8 +1,10 @@
-package com.trinity.demo3;
+package com.trinity.demo3.students;
 
 import org.hibernate.annotations.ManyToAny;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.trinity.demo3.school.School;
+import com.trinity.demo3.studentprofile.StudentProfile;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.CascadeType;
