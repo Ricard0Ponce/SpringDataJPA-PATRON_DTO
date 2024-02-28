@@ -2,10 +2,17 @@ package com.trinity.demo3.students;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
+import java.util.HashMap;
 import java.util.List; // Esta importacion es la buena y no la de Hibernate
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +31,7 @@ public class StudentController {
     // Este endpoint nos permite almacenar a un alumno gracias a un metodo de JPA.
     @PostMapping("/students")
     public StudentResponseDto saveStudent(
-            @RequestBody StudentDto dto) {
+            @Valid @RequestBody StudentDto dto) {
         return this.studentService.saveStudent(dto); // Llama al metodo studenService
     }
 
@@ -62,6 +69,28 @@ public class StudentController {
     public void delete(
             @PathVariable("student-id") Integer id) {
         this.studentService.deleteStudentById(id);
+    }
+
+    /*
+     * Este método maneja la excepción MethodArgumentNotValidException, que se lanza
+     * cuando falla la validación de un argumento de método anotado con @Valid.
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException exp) {
+        // Se crea un HashMap para almacenar los errores.
+        var errors = new HashMap<String, String>();
+        // Se obtienen todos los errores de la excepción.
+        exp.getBindingResult().getAllErrors().forEach(error -> {
+            // Se obtiene el nombre del campo que causó el error.
+            var fieldName = ((FieldError) error).getField();
+            // Se obtiene el mensaje de error predeterminado.
+            var errorMessage = error.getDefaultMessage();
+            // Se agrega el error al HashMap.
+            errors.put(fieldName, errorMessage);
+        });
+        // Se devuelve una ResponseEntity con el HashMap de errores y el código de
+        // estado BAD_REQUEST.
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
 }

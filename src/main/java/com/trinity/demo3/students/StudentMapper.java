@@ -11,6 +11,10 @@ public class StudentMapper {
     // queremos almacenar
     // En este DTO no se usa la edad de usuario como ejemplo
     public Student toStudent(StudentDto dto) {
+        if(dto == null){
+            throw new NullPointerException("El DTO del estudiante no deberia ser nulo");
+        }
+
         var student = new Student(); // Declaramos una variable de tipo estuidiante
         // Asignamos los valores que contiene el DTO a sus correspondientes campos
         student.setFirstname(dto.firstname()); // Se asigna directamente porque el dto pertenece a un record y este

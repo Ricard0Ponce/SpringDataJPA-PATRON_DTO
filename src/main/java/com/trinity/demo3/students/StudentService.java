@@ -20,13 +20,13 @@ public class StudentService {
         var student = studentMapper.toStudent(dto); // Hacemos paso de parametros del DTO a toStudent que se encarga de
                                                     // Mappearlo
         // para que sea Estudiante, eso es lo que almacenamos en la BD
-        repository.save(student); // Esta variable me permite
+        //repository.save(student); // Esta variable me permite
         // asignar a esa instancia a saveStudent, considero que es inecesario, se puede
         // pasar directamente el parametro de Student al metodo para mapearlo: var
-        // saveStudent = repository.save(student);
-        return studentMapper.toStudentResponseDto(student); // Lo que regresa el endpoint es la información básica y no
-                                                            // más, esto
-        // lo permite el metodo
+        var savedStudent = repository.save(student);
+        return studentMapper.toStudentResponseDto(savedStudent); // Lo que regresa el endpoint es la información básica y no 
+                                                            // más, esto 
+        // lo permite el metodo: studentMapper.toStudentResponseDto(student);
     }
 
     public List<StudentResponseDto> findAllStudent() {
